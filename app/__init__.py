@@ -11,8 +11,8 @@ def create_app():
     app = Flask(_name_)
     app.config.from_object('config.Config')  
     
-    db.init_app(app)   # Initialize the database with the app
-    migrate.init_app(app, db)  # Initialize Flask-Migrate
+    db.init_app(app)   
+    migrate.init_app(app, db)  
 
     from .routes import main  # Import routes
     app.register_blueprint(main)  # Register routes blueprint
