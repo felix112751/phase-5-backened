@@ -80,4 +80,8 @@ def seed_data():
             cover_image='https://images.unsplash.com/photo-1583986846791-d0ebefb2315c?auto=format&fit=crop&q=80',
             description='A psychological thriller about a famous painter who shoots her husband and then remains silent.'
         )
+
+        # Add books to the session and commit
+        db.session.add_all([book1, book2, book3, book4, book5])
+        db.session.commit()
             
