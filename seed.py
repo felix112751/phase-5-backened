@@ -40,6 +40,10 @@ def seed_data():
             role='user'
         )
 
+        # Add users to the session and commit
+        db.session.add_all([user1, user2, user3, user4, user5])
+        db.session.commit()
+
         # Create book clubs
         book_club1 = BookClub(
             id=str(uuid4()),
