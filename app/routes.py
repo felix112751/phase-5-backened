@@ -14,6 +14,6 @@ def create_user():
         email=data['email'],
         role=data['role']
     )
-    db.session.add(user)  # Add the user to the session
+    db.session.add(user)  
     db.session.commit()   # Commit the transaction to the database
     return jsonify({'message': 'User created successfully'}), 201
