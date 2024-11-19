@@ -15,3 +15,11 @@ class Book(db.Model):
     cover_image = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
+class BookClub(db.Model):
+    id = db.Column(db.String, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
+    cover_image = db.Column(db.String(255), nullable=False)
+    created_by_id = db.Column(db.String, db.ForeignKey('user.id'), nullable=False)
+    created_by = db.relationship('User', backref=db.backref('book_clubs', lazy=True))
+
