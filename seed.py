@@ -107,4 +107,8 @@ def seed_data():
             cover_image='https://images.unsplash.com/photo-1586916703502-0eae5b3708d9?auto=format&fit=crop&q=80',
             created_by_id=user3.id
         )
+
+        # Add book clubs to the session and commit
+        db.session.add_all([club1, club2, club3])
+        db.session.commit()
             
