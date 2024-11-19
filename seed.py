@@ -158,4 +158,34 @@ def seed_data():
         db.session.add_all([summary1, summary2, summary3, summary4])
         db.session.commit()
 
+        # Create Reviews
+        review1 = Review(
+            id=str(uuid4()),
+            rating=5,
+            comment='A masterpiece! One of my favorite books of all time.',
+            user_id=user1.id,
+            club_id=club.id,
+            created_at=datetime.utcnow()
+        )
+        review2 = Review(
+            id=str(uuid4()),
+            rating=4,
+            comment='Enjoyable read, but I figured out the mystery a bit too early.',
+            user_id=user2.id,
+            club_id=club2.id,
+            created_at=datetime.utcnow()
+        )
+        review3 = Review(
+            id=str(uuid4()),
+            rating=5,
+            comment='This book was life-changing for me!',
+            user_id=user3.id,
+            club_id=club3.id,
+            created_at=datetime.utcnow()
+        )
+
+        # Add reviews to the session and commit
+        db.session.add_all([review1, review2, review3])
+        db.session.commit()
+
         
