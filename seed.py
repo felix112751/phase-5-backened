@@ -44,17 +44,40 @@ def seed_data():
         db.session.add_all([user1, user2, user3, user4, user5])
         db.session.commit()
 
-        # Create book clubs
-        book_club1 = BookClub(
+       # Create Books
+        book1 = Book(
             id=str(uuid4()),
-            name='Book Club 1',
-            description='Description for Book Club 1',
-            cover_image='https://example.com/cover1.jpg',
-            created_by_id=user4.id
+            title='The Midnight Library',
+            author='Matt Haig',
+            cover_image='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80',
+            description='A story about a woman who discovers a magical library that allows her to explore different versions of the past.'
         )
-        book_club2 = BookClub(
+        book2 = Book(
             id=str(uuid4()),
-            name='Book Club 2',
-            description='Description for Book Club 2',
-            cover_image='https://example.com/cover2.jpg',
-            created_by_id=user5.id
+            title='The Thursday Murder Club',
+            author='Richard Osman',
+            cover_image='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80',
+            description='A mystery novel about a group of seniors who form a detective club to solve a murder case.'
+        )
+        book3 = Book(
+            id=str(uuid4()),
+            title='Educated',
+            author='Tara Westover',
+            cover_image='https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80',
+            description='A memoir about a woman who grew up in a survivalist family and went on to become a teacher.'
+        )
+        book4 = Book(
+            id=str(uuid4()),
+            title='Atomic Habits',
+            author='James Clear',
+            cover_image='https://images.unsplash.com/photo-1586993197628-2e6e5f029c98?auto=format&fit=crop&q=80',
+            description='A self-help book about how small changes in behavior can lead to significant improvements in life.'
+        )
+        book5 = Book(
+            id=str(uuid4()),
+            title='The Silent Patient',
+            author='Alex Michaelides',
+            cover_image='https://images.unsplash.com/photo-1583986846791-d0ebefb2315c?auto=format&fit=crop&q=80',
+            description='A psychological thriller about a famous painter who shoots her husband and then remains silent.'
+        )
+            
