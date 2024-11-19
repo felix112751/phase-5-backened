@@ -7,7 +7,7 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     avatar = db.Column(db.String(255))
     role = db.Column(db.String(20), nullable=False)
-
+#h
 class Book(db.Model):
     id = db.Column(db.String, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
