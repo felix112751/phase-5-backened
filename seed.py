@@ -111,4 +111,12 @@ def seed_data():
         # Add book clubs to the session and commit
         db.session.add_all([club1, club2, club3])
         db.session.commit()
+
+        # Add members to clubs
+        club1.members = [user1, user2, user4]
+        club2.members = [user2, user3, user5]
+        club3.members = [user3, user4, user5]
+
+        # Commit the changes
+        db.session.commit()
             
