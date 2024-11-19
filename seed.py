@@ -119,4 +119,43 @@ def seed_data():
 
         # Commit the changes
         db.session.commit()
-            
+
+        # Create Book Summaries
+        summary1 = BookSummary(
+            id=str(uuid4()),
+            book_id=book1.id,
+            user_id=user1.id,
+            club_id=club1.id,
+            content='A story about a woman who discovers a magical library that allows her to explore different versions of the past.'
+            created_at=datetime.utcnow()
+        )
+        summary2 = BookSummary(
+            id=str(uuid4()),
+            book_id=book2.id,
+            user_id=user2.id,
+            club_id=club2.id,
+            content='A mystery novel about a group of seniors who form a detective club to solve a murder case.'
+            created_at=datetime.utcnow()
+        )
+        summary3 = BookSummary(
+            id=str(uuid4()),
+            book_id=book3.id,
+            user_id=user3.id,
+            club_id=club3.id,
+            content='A memoir about a woman who grew up in a survivalist family and went on to become a teacher.'
+            created_at=datetime.utcnow()
+        )
+        summary4 = BookSummary(
+            id=str(uuid4()),
+            book_id=book4.id,
+            user_id=user4.id,   
+            club_id=club1.id,
+            content='A self-help book about how small changes in behavior can lead to significant improvements in life.'
+            created_at=datetime.utcnow()    
+        )
+
+        # Add book summaries to the session and commit
+        db.session.add_all([summary1, summary2, summary3, summary4])
+        db.session.commit()
+
+        
