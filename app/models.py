@@ -31,3 +31,11 @@ class BookSummary(db.Model):
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+class Review(db.Model):
+    id = db.Column(db.String, primary_key=True)
+    rating = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.String, db.ForeignKey('user.id'), nullable=False)
+    club_id = db.Column(db.String, db.ForeignKey('book_club.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
