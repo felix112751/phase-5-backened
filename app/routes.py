@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from .models import db, User
 from uuid import uuid4
 
-main = Blueprint('main', _name_)
+main = Blueprint('main', __name__)
 
 
 @main.route('/users', methods=['POST'])
