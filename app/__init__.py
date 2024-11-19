@@ -9,7 +9,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(_name_)
-    app.config.from_object('config.Config')  # Load config from config.py
+    app.config.from_object('config.Config')  
     
     db.init_app(app)   # Initialize the database with the app
     migrate.init_app(app, db)  # Initialize Flask-Migrate
