@@ -84,4 +84,27 @@ def seed_data():
         # Add books to the session and commit
         db.session.add_all([book1, book2, book3, book4, book5])
         db.session.commit()
+
+        # Create Book Clubs
+        club1 = BookClub(
+            id=str(uuid4()),
+            name='Fiction Fanatics',
+            description='A community of fiction lovers exploring contemporary and classic novels together.',
+            cover_image='https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80',
+            created_by_id=user4.id
+        )
+        club2 = BookClub(
+            id=str(uuid4()),
+            name='Mystery Readers',
+            description='Unravelling mysteries and discussing thrilling detective stories.',
+            cover_image='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80',
+            created_by_id=user2.id
+        )
+        club3 = BookClub(
+            id=str(uuid4()),
+            name='Self-Improvement Enthusiasts',
+            description='For those who enjoy reading books that help them grow as individuals.',
+            cover_image='https://images.unsplash.com/photo-1586916703502-0eae5b3708d9?auto=format&fit=crop&q=80',
+            created_by_id=user3.id
+        )
             
