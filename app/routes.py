@@ -4,7 +4,7 @@ from uuid import uuid4
 
 main = Blueprint('main', _name_)
 
-# Route to create a new user
+
 @main.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json() 
