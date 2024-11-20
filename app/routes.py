@@ -373,3 +373,14 @@ def update_review(id):
     except Exception as e:
         db.session.rollback()
         return jsonify({'message': 'Failed to update review', 'error': str(e)}), 500
+
+@main.route('/reviews/<id>', methods=['DELETE'])
+def delete_review(id):
+    try:
+        review = Review.query.get_or_404(id)
+        db.session.delete(review)
+        db.session.commit()
+        return jsonify({'message': 'Review deleted successfully'})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': 'Failed to delete review', 'error': str(e)}), 500
