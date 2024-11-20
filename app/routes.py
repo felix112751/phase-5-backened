@@ -342,3 +342,34 @@ def get_review(id):
         })
     except Exception as e:
         return jsonify({'message': 'Failed to fetch review', 'error': str(e)}), 500
+
+@main.route('/reviews/<id>', methods=['PUT'])
+def update_review(id):
+    data = request.get_json()
+
+    if 'rating' not in data or 'review' not in data:
+        return jsonify({'message': 'Missing required fields'}), 400
+
+    try:
+        review = Review.query.get_or_404(id)
+
+        review.rating = data['rating']
+        review.review = data['review']
+
+        db.session.commit()
+
+        return jsonify({
+            'message': 'Review updated successfully',
+            'review': {
+                'id': review.id,
+                'book_id': review.book_id,
+                'user_id': review.user_id,
+                'rating': review.rating,
+                'review': review.review,
+                'created_at': review.created_at
+            }
+        })
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': 'Failed to update review', 'error': str(e)}), 500
