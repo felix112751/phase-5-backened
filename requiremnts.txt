@@ -1,6 +1,6 @@
 alembic==1.13.3
 appdirs==1.4.3
-apturl==0.5.1
+apturl==0.5.2
 autocommand==2.2.2
 backports.tarfile==1.2.0
 bcrypt==3.1.7
