@@ -11,7 +11,7 @@ def is_valid_email(email):
     email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
     return re.match(email_regex, email)
 
-# -------------- USER ROUTES ----------------
+
 
 @main.route('/users', methods=['POST'])
 def create_user():
@@ -23,7 +23,7 @@ def create_user():
         return jsonify({'message': 'Invalid email format'}), 400
 
     user = User(
-        id=str(uuid4()),  # Generate a new unique ID for the user
+        id=str(uuid4()),  
         name=data['name'],
         email=data['email'],
         role=data['role']
@@ -115,7 +115,7 @@ def delete_user(id):
         db.session.rollback()
         return jsonify({'message': 'Failed to delete user', 'error': str(e)}), 500
 
-# -------------- BOOK ROUTES ----------------
+
 
 @main.route('/books', methods=['POST'])
 def create_book():
@@ -219,7 +219,7 @@ def delete_book(id):
         db.session.rollback()
         return jsonify({'message': 'Failed to delete book', 'error': str(e)}), 500
 
-# -------------- BOOK CLUB ROUTES ----------------
+
 
 @main.route('/bookclubs', methods=['POST'])
 def create_book_club():
