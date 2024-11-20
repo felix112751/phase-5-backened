@@ -328,7 +328,7 @@ def get_reviews_for_book(book_id):
     except Exception as e:
         return jsonify({'message': 'Failed to fetch reviews', 'error': str(e)}), 500
 
- @main.route('/reviews/<id>', methods=['GET'])
+@main.route('/reviews/<id>', methods=['GET'])
 def get_review(id):
     try:
         review = Review.query.get_or_404(id)

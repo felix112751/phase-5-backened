@@ -8,43 +8,57 @@ app = create_app()
 def seed_data():
     with app.app_context():
 
-        # Create users
-        user1 = User(
-            id=str(uuid4()),
-            name='Alice Smith',
-            email='alice.smith@example.com',
-            role='user'
-        )
-        user2 = User(
-            id=str(uuid4()),
-            name='Bob Johnson',
-            email='bob.johnson@example.com',
-            role='user'
-        )
-        user3 = User(
-            id=str(uuid4()),
-            name='Carol White',
-            email='carol.white@example.com',
-            role='user'
-        )
-        user4 = User(
-            id=str(uuid4()),
-            name='David Brown',
-            email='david.brown@example.com',
-            role='admin'
-        )
-        user5 = User(
-            id=str(uuid4()),
-            name='Eve Williams',
-            email='eve.williams@example.com',
-            role='user'
-        )
+        # Check if users already exist by email, and only add if not
+        user1 = User.query.filter_by(email='alice.smith@example.com').first()
+        if not user1:
+            user1 = User(
+                id=str(uuid4()),
+                name='Alice Smith',
+                email='alice.smith@example.com',
+                role='user'
+            )
+
+        user2 = User.query.filter_by(email='bob.johnson@example.com').first()
+        if not user2:
+            user2 = User(
+                id=str(uuid4()),
+                name='Bob Johnson',
+                email='bob.johnson@example.com',
+                role='user'
+            )
+
+        user3 = User.query.filter_by(email='carol.white@example.com').first()
+        if not user3:
+            user3 = User(
+                id=str(uuid4()),
+                name='Carol White',
+                email='carol.white@example.com',
+                role='user'
+            )
+
+        user4 = User.query.filter_by(email='david.brown@example.com').first()
+        if not user4:
+            user4 = User(
+                id=str(uuid4()),
+                name='David Brown',
+                email='david.brown@example.com',
+                role='admin'
+            )
+
+        user5 = User.query.filter_by(email='eve.williams@example.com').first()
+        if not user5:
+            user5 = User(
+                id=str(uuid4()),
+                name='Eve Williams',
+                email='eve.williams@example.com',
+                role='user'
+            )
 
         # Add users to the session and commit
         db.session.add_all([user1, user2, user3, user4, user5])
         db.session.commit()
 
-       # Create Books
+        # Create Books
         book1 = Book(
             id=str(uuid4()),
             title='The Midnight Library',
@@ -123,12 +137,12 @@ def seed_data():
         # Add books to clubs
         club1.books = [book1]
         club2.books = [book2]
-        club3.books = [book3] 
+        club3.books = [book3]
 
         # Commit the changes
         db.session.commit()
 
-         # Create Book Summaries
+        # Create Book Summaries
         summary1 = BookSummary(
             id=str(uuid4()),
             book_id=book1.id,
@@ -153,6 +167,14 @@ def seed_data():
             content='A truly inspiring story about overcoming obstacles.',
             created_at=datetime.utcnow()
         )
+        summary4 = BookSummary(
+            id=str(uuid4()),
+            book_id=book4.id,
+            user_id=user4.id,
+            club_id=club1.id,  # Adjusted to an existing club ID
+            content='An emotional journey of self-discovery and healing.',
+            created_at=datetime.utcnow()
+        )
 
         # Add book summaries to the session and commit
         db.session.add_all([summary1, summary2, summary3, summary4])
@@ -164,7 +186,7 @@ def seed_data():
             rating=5,
             comment='A masterpiece! One of my favorite books of all time.',
             user_id=user1.id,
-            club_id=club.id,
+            club_id=club1.id,
             created_at=datetime.utcnow()
         )
         review2 = Review(
@@ -192,5 +214,3 @@ def seed_data():
 
 if __name__ == '__main__':
     seed_data()
-
-        
