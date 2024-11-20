@@ -312,3 +312,19 @@ def create_review():
         db.session.rollback()
         return jsonify({'message': 'Failed to create review', 'error': str(e)}), 500
 
+@main.route('/reviews/<book_id>', methods=['GET'])
+def get_reviews_for_book(book_id):
+    try:
+        reviews = Review.query.filter_by(book_id=book_id).all()
+        reviews_list = [{
+            'id': review.id,
+            'book_id': review.book_id,
+            'user_id': review.user_id,
+            'rating': review.rating,
+            'review': review.review,
+            'created_at': review.created_at
+        } for review in reviews]
+        return jsonify(reviews_list)
+    except Exception as e:
+        return jsonify({'message': 'Failed to fetch reviews', 'error': str(e)}), 500
+        
