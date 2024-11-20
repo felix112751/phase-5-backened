@@ -1,8 +1,8 @@
-"""init
+""" added user ,book and bookclub routes
 
-Revision ID: 309f1f7d477b
+Revision ID: afae516e3444
 Revises: 
-Create Date: 2024-11-19 12:29:07.875087
+Create Date: 2024-11-20 13:33:00.264234
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '309f1f7d477b'
+revision = 'afae516e3444'
 down_revision = None
 branch_labels = None
 depends_on = None

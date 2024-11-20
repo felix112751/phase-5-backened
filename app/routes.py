@@ -277,3 +277,38 @@ def get_book_club(id):
         })
     except Exception as e:
         return jsonify({'message': 'Failed to fetch book club', 'error': str(e)}), 500
+
+@main.route('/reviews', methods=['POST'])
+def create_review():
+    data = request.get_json()
+    if 'book_id' not in data or 'user_id' not in data or 'rating' not in data or 'review' not in data:
+        return jsonify({'message': 'Missing required fields'}), 400
+
+    review = Review(
+        id=str(uuid4()),
+        book_id=data['book_id'],
+        user_id=data['user_id'],
+        rating=data['rating'],
+        review=data['review'],
+        created_at=datetime.utcnow()
+    )
+
+    try:
+        db.session.add(review)
+        db.session.commit()
+        return jsonify({
+            'message': 'Review created successfully',
+            'review': {
+                'id': review.id,
+                'book_id': review.book_id,
+                'user_id': review.user_id,
+                'rating': review.rating,
+                'review': review.review,
+                'created_at': review.created_at
+            }
+        }), 201
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': 'Failed to create review', 'error': str(e)}), 500
+
